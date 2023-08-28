@@ -1,0 +1,8 @@
+@use '../Foundation/Settings/variable' as *;
+
+/* background-color */
+@each $key, $color in $color-map {
+  .u-bg-#{$key} {
+    background-color: var(--color-#{$key});
+  }
+}

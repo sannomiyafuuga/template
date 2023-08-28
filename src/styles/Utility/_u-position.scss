@@ -1,0 +1,73 @@
+/* position */
+@use 'sass:color';
+@use 'sass:math';
+@use '../Foundation/Settings/variable' as *;
+@use '../Foundation/Tools/functions' as *;
+@use '../Foundation/Tools/mixins' as *;
+
+@mixin position($prefix: '') {
+  .#{$prefix}u-relative {
+    position: relative;
+  }
+  .#{$prefix}u-absolute {
+    position: absolute;
+  }
+  .#{$prefix}u-sticky {
+    position: sticky;
+  }
+  .#{$prefix}u-fixed {
+    position: fixed;
+  }
+  .#{$prefix}u-static {
+    position: static;
+  }
+  @for $i from 0 through 20 {
+    .#{$prefix}u-top-#{$i} {
+      top: #{$i * 0.1}rem;
+    }
+    .#{$prefix}u-bottom-#{$i} {
+      bottom: #{$i * 0.1}rem;
+    }
+    .#{$prefix}u-right-#{$i} {
+      right: #{$i * 0.1}rem;
+    }
+    .#{$prefix}u-left-#{$i} {
+      left: #{$i * 0.1}rem;
+    }
+
+    @if $i != 0 {
+      .#{$prefix}u-top-_#{$i} {
+        top: #{$i * -0.1}rem;
+      }
+      .#{$prefix}u-right-_#{$i} {
+        right: #{$i * -0.1}rem;
+      }
+      .#{$prefix}u-bottom-_#{$i} {
+        bottom: #{$i * -0.1}rem;
+      }
+      .#{$prefix}u-left-_#{$i} {
+        left: #{$i * -0.1}rem;
+      }
+    }
+  }
+  .#{$prefix}u-top-full {
+    top: 100%;
+  }
+  .#{$prefix}u-right-full {
+    right: 100%;
+  }
+  .#{$prefix}u-bottom-full {
+    bottom: 100%;
+  }
+  .#{$prefix}u-left-full {
+    left: 100%;
+  }
+}
+
+@include position();
+@media (--min-lg) {
+  @include position('L\\:');
+}
+@media (--min-md) {
+  @include position('M\\:');
+}

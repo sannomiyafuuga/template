@@ -1,0 +1,166 @@
+/* text */
+.u-text-screen-reader {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  padding: 0;
+  border: 0;
+  word-wrap: normal;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+}
+
+@mixin textAllMedia($prefix: '') {
+  // font-family
+  .u-family-base {
+    font-family: var(--font-family-base);
+  }
+  .u-family-body {
+    font-family: var(--font-family);
+  }
+  .u-family-sub {
+    font-family: var(--font-family-sub), var(--font-family-base);
+  }
+  .u-family-YuGothic {
+    font-family: var(--font-family-YuGothic), var(--font-family-base);
+  }
+  .u-family-YuMincho {
+    font-family: var(--font-family-YuMincho), var(--font-family-base);
+  }
+
+  // font-weight
+  .u-weight-100 {
+    font-weight: var(--font-weight-thin); // thin
+  }
+  .u-weight-200 {
+    font-weight: var(--font-weight-extraLight); // extraLight
+  }
+  .u-weight-300 {
+    font-weight: var(--font-weight-light); // light
+  }
+  .u-weight-400 {
+    font-weight: var(--font-weight-regular); // regular and normal
+  }
+  .u-weight-500 {
+    font-weight: var(--font-weight-medium); // medium
+  }
+  .u-weight-600 {
+    font-weight: var(--font-weight-semiBold); // semiBold
+  }
+  .u-weight-700 {
+    font-weight: var(--font-weight-bold); // bold
+  }
+  .u-weight-800 {
+    font-weight: var(--font-weight-extraBold); // extraBold
+  }
+  .u-weight-900 {
+    font-weight: var(--font-weight-black); // black
+  }
+
+  // font-style
+  .u-italic {
+    font-style: italic;
+  }
+
+  // text-transform
+  .u-uppercase {
+    text-transform: uppercase;
+  }
+  .u-lowercase {
+    text-transform: lowercase;
+  }
+
+  // アンチエイリアス
+  .u-font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  // アンチエイリアス - none
+  .u-font-smoothing-n {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  // font-feature-settings
+  .u-feature-palt {
+    font-feature-settings: 'palt' 1;
+  }
+  .u-feature-normal {
+    font-feature-settings: normal;
+  }
+
+  .u-pre {
+    white-space: pre;
+  }
+  .u-pre-wrap {
+    white-space: pre-wrap;
+  }
+  .u-pre-line {
+    white-space: pre-line;
+  }
+}
+
+@mixin text($prefix: '') {
+  .#{$prefix}u-tategaki {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    font-feature-settings: normal; // ずれたりする
+  }
+
+  .#{$prefix}u-textleft {
+    text-align: left;
+  }
+  .#{$prefix}u-textcenter {
+    text-align: center;
+  }
+  .#{$prefix}u-textright {
+    text-align: right;
+  }
+  .#{$prefix}u-textjustify {
+    text-align: justify;
+  }
+
+  // 文字 末尾省略
+  .#{$prefix}u-text-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-overflow: '[...]';
+  }
+
+  .#{$prefix}u-line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  .#{$prefix}u-line-clamp--1 {
+    -webkit-line-clamp: 1;
+  }
+  .#{$prefix}u-line-clamp--2 {
+    -webkit-line-clamp: 2;
+  }
+  .#{$prefix}u-line-clamp--3 {
+    -webkit-line-clamp: 3;
+  }
+
+  // white-space
+  .#{$prefix}u-nowrap {
+    white-space: nowrap;
+  }
+}
+
+@include text();
+@include textAllMedia();
+
+@media (--min-lg) {
+  @include text('L\\:');
+}
+@media (--min-md) {
+  @include text('M\\:');
+}

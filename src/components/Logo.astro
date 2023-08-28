@@ -1,0 +1,8 @@
+---
+const { root, className = '' } = Astro.props
+---
+
+<a href={`${root}`} class={`c-logo ${className}`}>
+  <span class="u-text-screen-reader">アクセシビリティ用</span>
+  <span class="c-logo__label">ロゴ</span>
+</a>

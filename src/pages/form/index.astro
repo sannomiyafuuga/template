@@ -1,0 +1,382 @@
+---
+import Layout, { defaultRoot } from '../../layouts/Layout.astro'
+import Picture from '../../components/Picture.astro'
+import WpPagination from '../../components/WpPagination.astro'
+const root = defaultRoot // 任意のパスを設定してrootを上書きできます
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'form',
+  isPagination: false, // ページネーションの有無
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: 'フォーム', // 基本必須（titleTagが有線される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: 'フォーム',
+  subTitle: '',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: '親ページ',
+    href: '#',
+  },
+  {
+    text: 'カレントページ',
+    href: '#',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} root={root} breadcrumbs={customCrumbs}>
+  <div class="p-form-wrapper" data-form="cf7">
+    <div class="wpcf7">
+      <form action="" class="wpcf7-form h-adr invalid" novalidate>
+        <span class="p-country-name" style="display: none">Japan</span>
+
+        <div class="p-form-frame">
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-name" class="p-form-header__label">
+                <span class="p-form-header__label-main">お問い合わせ内容</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input">
+              <span class="p-form-selectbox">
+                <span class="wpcf7-form-control-wrap">
+                  <select name="" id="">
+                    <option value="セレクトボックス">セレクトボックス</option>
+                    <option value="お問い合わせ">お問い合わせ</option>
+                    <option value="資料請求">資料請求</option>
+                  </select>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="name" class="p-form-header__label">
+                <span class="p-form-header__label-main">お名前</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input">
+              <span class="wpcf7-form-control-wrap">
+                <input type="text" name="name" value="" class="wpcf7-form-control" id="name" placeholder="例）熊本　太郎" required autocomplete="name" />
+                <span class="wpcf7-not-valid-tip" aria-hidden="true">必須項目に入力してください。<br />（このタグは自動で挿入されます。※WP実装時は削除）</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-furigana" class="p-form-header__label">
+                <span class="p-form-header__label-main">ふりがな</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input">
+              <span class="wpcf7-form-control-wrap">
+                <input type="text" name="your-furigana" value="" class="wpcf7-form-control" id="your-furigana" placeholder="例）くまもと たろう" required inputmode="katakana" />
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-furigana" class="p-form-header__label">
+                <span class="p-form-header__label-main">読み取り専用</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input p-form-input--readonly">
+              <span class="wpcf7-form-control-wrap">
+                <input type="text" name="your-readonly" value="読み取り専用" class="wpcf7-form-control" id="your-readonly" readonly aria-readonly="true" />
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item" role="birthday-group" aria-labelledby="birthday-group-label">
+            <div class="p-form-header">
+              <label id="birthday-group-label" for="bday-year" class="p-form-header__label">
+                <span class="p-form-header__label-main">生年月日</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input p-form-block-day">
+              <span data-toHarfNum="bday-year" class="p-form-block-day__item">
+                <span class="p-form-block-day__item-input">
+                  <span class="wpcf7-form-control-wrap">
+                    <input type="text" name="bday-year" value="" class="wpcf7-form-control" id="bday-year" placeholder="例）1990" required autocomplete="bday-year" inputmode="numeric" />
+                  </span>
+                </span>
+                <span class="p-form-block-day__item-sub">年</span>
+              </span>
+
+              <span data-toHarfNum="bday-month" class="p-form-block-day__item">
+                <span class="p-form-block-day__item-input">
+                  <span class="wpcf7-form-control-wrap">
+                    <input type="text" name="bday-month" value="" class="wpcf7-form-control" id="bday-month" placeholder="例）12" required autocomplete="bday-month" inputmode="numeric" />
+                  </span>
+                </span>
+                <span class="p-form-block-day__item-sub">月</span>
+              </span>
+
+              <span data-toHarfNum="bday-day" class="p-form-block-day__item">
+                <span class="p-form-block-day__item-input">
+                  <span class="wpcf7-form-control-wrap">
+                    <input type="text" name="bday-day" value="" class="wpcf7-form-control" id="bday-day" placeholder="例）3" required autocomplete="bday-day" inputmode="numeric" />
+                  </span>
+                </span>
+                <span class="p-form-block-day__item-sub">日</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item" role="group" aria-labelledby="address-group">
+            <div class="p-form-header">
+              <label id="address-group" class="p-form-header__label">
+                <span class="p-form-header__label-main">住所</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input p-form-block-address" data-toHarfNum="postal-code">
+              <span class="p-form-block-address__postalcode">
+                <span class="p-form-block-address__postalcode-sub">〒</span>
+                <span class="p-form-block-address__postalcode-label">
+                  <span class="wpcf7-form-control-wrap">
+                    <input
+                      type="text"
+                      name="postal-code"
+                      value=""
+                      size="16"
+                      maxlength="8"
+                      class="p-postal-code"
+                      id="postal-code"
+                      aria-required="true"
+                      aria-invalid="false"
+                      placeholder="（例）8600833"
+                      autocomplete="postal-code"
+                      inputmode="numeric"
+                    />
+                  </span>
+                </span>
+              </span>
+              <span class="p-form-block-address__item">
+                <input
+                  type="text"
+                  name="address-line1"
+                  value=""
+                  class="wpcf7-form-control p-region p-locality p-street-address"
+                  id="address-line1"
+                  placeholder="例）熊本市中央区"
+                  required
+                  autocomplete="address-line1"
+                />
+              </span>
+              <span class="p-form-block-address__item">
+                <input type="text" name="address-line2" value="" class="wpcf7-form-control p-extended-address" id="address-line2" placeholder="例）3丁目7番10号" autocomplete="address-line2" />
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item" role="radiogroup" aria-labelledby="your-return-list-label">
+            <div class="p-form-header">
+              <label id="your-return-list-label" for="your-return-list" class="p-form-header__label">
+                <span class="p-form-header__label-main">性別</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input p-form-lists">
+              <span class="wpcf7-form-control-wrap">
+                <span class="wpcf7-form-control">
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="radio" name="your-return-list" value="男性" checked="" />
+                      <span class="wpcf7-list-item-label">男性</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="radio" name="your-return-list" value="女性" />
+                      <span class="wpcf7-list-item-label">女性</span>
+                    </label>
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item" role="group" aria-labelledby="checkbox-group-ok">
+            <div class="p-form-header">
+              <label id="checkbox-group-ok" for="your-return-list" class="p-form-header__label">
+                <span class="p-form-header__label-main">チェックボックス</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input p-form-lists">
+              <span class="wpcf7-form-control-wrap">
+                <span class="wpcf7-form-control">
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="項目1" checked="" />
+                      <span class="wpcf7-list-item-label">項目1</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="項目2" checked="" />
+                      <span class="wpcf7-list-item-label">項目2</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="項目3" />
+                      <span class="wpcf7-list-item-label">項目3</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="チェックボックス1" />
+                      <span class="wpcf7-list-item-label">チェックボックス1</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="チェックボックス2" />
+                      <span class="wpcf7-list-item-label">チェックボックス2</span>
+                    </label>
+                  </span>
+                  <span class="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="your-return-list" value="チェックボックス3" />
+                      <span class="wpcf7-list-item-label">チェックボックス3</span>
+                    </label>
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-tel" class="p-form-header__label">
+                <span class="p-form-header__label-main">電話番号</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input" data-toHarfNum="your-tel">
+              <span class="wpcf7-form-control-wrap">
+                <input type="tel" name="your-tel" value="" class="wpcf7-form-control" id="your-tel" placeholder="例）0963524450" required autocomplete="tel" inputmode="tel" />
+              </span>
+            </div>
+          </div>
+
+          <div data-inputCopyText="email-copy" class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-mail" class="p-form-header__label">
+                <span class="p-form-header__label-main">メールアドレス</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div class="p-form-input">
+              <span class="wpcf7-form-control-wrap">
+                <input type="email" name="your-mail" value="" class="wpcf7-form-control" id="your-mail" placeholder="例）example@example.com" required autocomplete="email" inputmode="email" />
+              </span>
+
+              <div class="p-form-block-emailcheck">
+                <p class="p-form-block-emailcheck__input" id="email-copy"></p>
+                <p class="p-form-block-emailcheck__help">※上記メールアドレスにお間違えがないか、今一度ご確認ください。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-message" class="p-form-header__label">
+                <span class="p-form-header__label-main">その他</span>
+                <span class="p-form-header__label-status p-form-status">任意</span>
+              </label>
+            </div>
+
+            <div class="p-form-input">
+              <span class="wpcf7-form-control-wrap">
+                <textarea name="your-message" id="your-message" cols="30" rows="6"></textarea>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-form-item">
+            <div class="p-form-header">
+              <label for="your-message" class="p-form-header__label">
+                <span class="p-form-header__label-main">個人情報の取り扱いについて</span>
+                <span class="p-form-header__label-status p-form-status p-form-status--required">必須</span>
+              </label>
+            </div>
+
+            <div data-cf-agree="check" class="p-form-input p-form-lists p-form-block-acceptance">
+              <p class="p-form-block-acceptance__text">
+                ご入力いただく内容は、お問い合わせへの調査や返答のために使用し、目的を超えて使用することは一切ございません。<br />
+                ご同意いただける場合は「上記内容に同意する」 にチェックをつけてください。<br />
+                ※「上記内容に同意する」 にチェックがない場合は、次のステップに進むことができませんので、ご注意ください。
+              </p>
+              <div class="p-form-block-acceptance__checkui">
+                <span class="wpcf7-form-control-wrap acceptance">
+                  <span class="wpcf7-form-control wpcf7-acceptance optional">
+                    <span class="wpcf7-list-item">
+                      <label>
+                        <input type="checkbox" name="acceptance" value="1" aria-invalid="false" class="acceptance" id="acceptance" />
+                        <span class="wpcf7-list-item-label">上記内容に同意する</span>
+                      </label>
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-form-response-output">
+          <div class="wpcf7-response-output" aria-hidden="true">
+            入力内容に問題があります。確認して再度お試しください。<br />（このタグは自動で挿入されます。※WP実装時は削除）
+          </div>
+        </div>
+
+        <div class="p-form-submit" data-cf-agree="submit">
+          <div class="p-form-submit__btn">
+            <input type="submit" value="お問い合わせをする" class="wpcf7-form-control wpcf7-submit p-form-button" id="cf-submit" />
+            <span class="ajax-loader"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>

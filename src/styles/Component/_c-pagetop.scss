@@ -1,0 +1,32 @@
+.c-pagetop {
+  --cb: cubic-bezier(0.51, 0.25, 0.25, 0.95);
+  position: absolute;
+  right: 0;
+  bottom: -1.2rem;
+  z-index: 300;
+  padding: 0 1rem;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+
+  // .c-pagetop__i
+  &__i {
+    transition: transform 0.4s var(--cb) 0s;
+  }
+
+  @media (any-hover: hover) {
+    &:hover,
+    &:focus-visible {
+      .c-pagetop__i {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  html.js-over-once-scroll [data-slug='front'] &:not(:hover):not(:focus-visible),
+  html.js-over-header body:not([data-slug='front']) &:not(:hover):not(:focus-visible) {
+    .c-pagetop__i {
+      transform: translate3d(0, calc(100% - 10rem), 0);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+---
+import Hero from '../components/Hero.astro'
+import MenuToggle from '../components/MenuToggle.astro'
+import Logo from './Logo.astro'
+const { isHome, page, hero, root } = Astro.props
+---
+
+<header role="banner" id="header" class="l-header l-body__header">
+  <div class="l-header__main">
+    <div id="header-logo" class="l-header__logo">
+      {
+        isHome ? (
+          <h1 class="l-header__logo-label">
+            <Logo root={`${root}`} className="" />
+          </h1>
+        ) : (
+          <div class="l-header__logo-label">
+            <Logo root={`${root}`} className="" />
+          </div>
+        )
+      }
+    </div>
+
+    <div class="l-header__nav l:u-hidden">
+      <nav id="global-menu">
+        <div class="l-header__nav">
+          <ul class="c-nav">
+            <li class="c-nav__item">
+              <a href={`${root}`} class="c-nav__link">
+                <span class="c-nav__link-label">ホーム</span>
+              </a>
+            </li>
+            <li class="c-nav__item">
+              <a href={`${root}post/`} class="c-nav__link">
+                <span class="c-nav__link-label">投稿</span>
+              </a>
+            </li>
+            <li class="c-nav__item">
+              <a href={`${root}form/`} class="c-nav__link">
+                <span class="c-nav__link-label">フォーム</span>
+              </a>
+            </li>
+            <li class="c-nav__item">
+              <a href={`${root}form/thanks/`} class="c-nav__link">
+                <span class="c-nav__link-label">サンクスページ</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <MenuToggle id="menu-toggle" label="menu" controls="global-menu-drawer" />
+  {/* ここにdrawer.jsによってDrawerコンポーネントが生成され#global-menuがclonesされる */}
+
+  {!isHome && hero && <Hero page={page} hero={hero} root={root} />}
+</header>

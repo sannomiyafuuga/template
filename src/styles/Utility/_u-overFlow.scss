@@ -1,0 +1,15 @@
+/* overflow */
+
+@mixin overFlow($prefix: '') {
+  .#{$prefix}u-of-hidden {
+    overflow: hidden;
+  }
+}
+
+@include overFlow();
+@media (--min-lg) {
+  @include overFlow('L\\:');
+}
+@media (--min-md) {
+  @include overFlow('M\\:');
+}

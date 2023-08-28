@@ -1,0 +1,44 @@
+/* display */
+
+@mixin utility($prefix: '') {
+  // hidden
+  .#{$prefix}u-hidden {
+    display: none !important;
+  }
+}
+
+@mixin utilityAllMedia($prefix: '') {
+  // media
+  @media screen {
+    .u-screen-hidden {
+      display: none !important;
+    }
+  }
+  @media print {
+    .u-print-hidden {
+      display: none !important;
+    }
+  }
+
+  // 子を持たない要素（空要素）
+  .u-empty:empty {
+    display: none !important;
+  }
+
+  @media (--max-lg) {
+    @include utility('l\\:');
+  }
+  @media (--max-md) {
+    @include utility('m\\:');
+  }
+}
+
+@include utilityAllMedia();
+@include utility();
+
+@media (--min-lg) {
+  @include utility('L\\:');
+}
+@media (--min-md) {
+  @include utility('M\\:');
+}

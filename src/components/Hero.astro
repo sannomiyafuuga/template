@@ -1,0 +1,35 @@
+---
+import Picture from './Picture.astro'
+
+const { root, hero, page } = Astro.props
+---
+
+<div data-view-over="header" class={`l-hero${hero?.parentTitle && ' l-hero--parent'} ${hero?.themeClass ? hero?.themeClass : ''}`}>
+  <div class="l-hero__container">
+    {
+      hero?.parentTitle && (
+        <div class="l-hero-heading-parent">
+          <span class="l-hero-heading-parent__label" set:html={hero.parentTitle} />
+        </div>
+      )
+    }
+    {
+      hero?.mainTitle && page.type !== 'single' ? (
+        <h1 class="l-hero-heading-main">
+          <span class="l-hero-heading-main__label" set:html={hero.mainTitle} />
+        </h1>
+      ) : (
+        <p class="l-hero-heading-main">
+          <span class="l-hero-heading-main__label" set:html={hero.mainTitle} />
+        </p>
+      )
+    }
+    {
+      hero?.subTitle && (
+        <p class="l-hero-heading-sub">
+          <span class="l-hero-heading-sub__label" set:html={hero.subTitle} />
+        </p>
+      )
+    }
+  </div>
+</div>

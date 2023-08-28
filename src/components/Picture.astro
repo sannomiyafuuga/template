@@ -1,0 +1,50 @@
+---
+const { src, ext = 'jpg', alt, media, className = '', width, height, mobileWidth, mobileHeight, lazyload = true, webp = true, ariaHidden = false } = Astro.props
+
+/*
+<Picture
+  ext="jpg"
+  src={`${root}assets/images/example`}
+  webp={true}
+  lazyload={true}
+  alt="サンプルの写真"
+  width={670}
+  height={450}
+  className=""
+  media=""
+  mobileWidth=""
+  mobileHeight=""
+  ariaHidden={false}
+/>
+*/
+---
+
+{
+  lazyload ? (
+    webp ? (
+      <picture>
+        <source type="image/webp" media={`(min-width:${media || width / 2}px)`} srcset={`${src}.webp 1x, ${src}@2x.webp 2x`} width={`${width}`} height={`${height}`} />
+        <source media={`(min-width:${media || width / 2}px)`} srcset={`${src}.${ext} 1x, ${src}@2x.${ext} 2x`} width={`${width}`} height={`${height}`} />
+        <source type="image/webp" srcset={`${src}.webp`} width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} />
+        <img src={`${src}.${ext}`} decoding="async" loading="lazy" width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} alt={alt} class={className} aria-hidden={ariaHidden} />
+      </picture>
+    ) : (
+      <picture>
+        <source media={`(min-width:${media || width / 2}px)`} srcset={`${src}.${ext} 1x, ${src}@2x.${ext} 2x`} width={`${width}`} height={`${height}`} />
+        <img src={`${src}.${ext}`} decoding="async" loading="lazy" width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} alt={alt} class={className} aria-hidden={ariaHidden} />
+      </picture>
+    )
+  ) : webp ? (
+    <picture>
+      <source type="image/webp" media={`(min-width:${media || width / 2}px)`} srcset={`${src}.webp 1x, ${src}@2x.webp 2x`} width={`${width}`} height={`${height}`} />
+      <source media={`(min-width:${media || width / 2}px)`} srcset={`${src}.${ext} 1x, ${src}@2x.${ext} 2x`} width={`${width}`} height={`${height}`} />
+      <source type="image/webp" srcset={`${src}.webp`} width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} />
+      <img src={`${src}.${ext}`} width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} alt={alt} class={className} aria-hidden={ariaHidden} />
+    </picture>
+  ) : (
+    <picture>
+      <source media={`(min-width:${media || width / 2}px)`} srcset={`${src}.${ext} 1x, ${src}@2x.${ext} 2x`} width={`${width}`} height={`${height}`} />
+      <img src={`${src}.${ext}`} width={`${mobileWidth || width}`} height={`${mobileHeight || height}`} alt={alt} class={className} aria-hidden={ariaHidden} />
+    </picture>
+  )
+}

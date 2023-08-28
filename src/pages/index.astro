@@ -1,0 +1,49 @@
+---
+import Layout, { defaultRoot } from '../layouts/Layout.astro'
+import Picture from '../components/Picture.astro'
+import Image from '../components/Image.astro'
+const root = defaultRoot // 任意のパスを設定してrootを上書きできます
+
+// ページ情報
+const page = {
+  type: 'home', // home | page | single
+  sub: false, // サブエリアの追加
+  slug: 'front',
+}
+
+// SEO・metaタグ関連
+const seo = {
+  // title: 'ページタイトル', // 基本必須（titleTagが有線される）
+  titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  description: 'Webサイト構築用 Astroフレームワークです', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '親カテゴリー',
+  mainTitle: 'メインタイトル',
+  subTitle: 'サブタイトル',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = false
+---
+
+<Layout page={page} seo={seo} hero={hero} root={root} breadcrumbs={customCrumbs}>
+  <p>Astro</p>
+  <p>ほげ</p>
+
+  <a href={`${root}`} class="c-btn">
+    <span class="c-btn__label">ボタン</span>
+  </a>
+
+  <details class="js-details">
+    <summary>詳細</summary>
+    <p>詳細</p>
+  </details>
+</Layout>

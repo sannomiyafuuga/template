@@ -1,0 +1,117 @@
+.navigation.pagination {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: calc(100vw - 4rem);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.nav-links {
+  overflow: hidden;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+ul.page-numbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 0;
+  margin: -5px -8px;
+}
+
+ul.page-numbers li {
+
+  flex: 0 1 auto;
+  padding: 5px 8px;
+}
+
+  .page-numbers[href] {
+    transition: background 0.35s ease-in-out, transform 0.35s ease-in-out, color 0.35s ease-in-out;
+  }
+  .page-numbers[href],
+  .page-numbers[aria-current='page'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    border: 1px solid #f6f7f9;
+    color: #333333;
+    background: #f6f7f9;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .page-numbers[href]:not(.prev):not(.next),
+  .page-numbers[aria-current='page']:not(.prev):not(.next) {
+      width: 5rem;
+      border-radius: 50%;
+    }
+
+  .page-numbers[aria-current='page'] {
+    border: 1px solid var(--color-theme);
+    background: var(--color-theme);
+    color: #fff;
+  }
+
+  .page-numbers .prev,
+  .page-numbers .next {
+    width: 9rem;
+    border-radius: 5rem;
+    border: 1px solid var(--color-theme);
+    background: var(--color-theme);
+    color: #fff;
+    border-width: 2px;
+    font-size: rem(16);
+    font-weight: 700;
+    padding-top: 2px;
+  }
+
+  @media (any-hover: hover) {
+    .page-numbers[href]:hover,.page-numbers[href]:focus-visible {
+      background: var(--color-theme);
+      color: #fff;
+    }
+
+    .page-numbers[href].prev:hover,
+    .page-numbers[href].next:focus-visible {
+      color: var(--color-theme);
+        background: #fff;
+    }
+  }
+
+
+@media (max-width: 767px) {
+  ul.page-numbers {
+    padding-bottom: 70px;
+    position: relative;
+  }
+
+  .page-numbers .prev,
+  .page-numbers .next {
+    position: absolute;
+    bottom: 5px;
+  }
+  .page-numbers .prev {
+    left: 8px;
+  }
+  .page-numbers .next {
+    right: 8px;
+  }
+}

@@ -1,0 +1,25 @@
+@use '../Settings/variable' as *;
+
+/// テキストの境界線 (16分割して滑らか感をだす)
+/// @param  {number} $width        大きさ
+/// @param  {string} $color        カラーコード
+/// @param  {string} $chain-before 連鎖させる値(前)
+/// @param  {string} $chain-after  連鎖させる値(後)
+/// @return {string}               値
+@function text-outline($width: 1px, $color: var(--color-text), $chain-before: null, $chain-after: null) {
+  @return $chain-before, 0 * $width -1 * $width 0 $color, 0.33 * $width -0.99 * $width 0 $color, 0.66 * $width -0.66 * $width 0 $color, 0.99 * $width -0.33 * $width 0 $color,
+    1 * $width 0 * $width 0 $color, 0.99 * $width 0.33 * $width 0 $color, 0.66 * $width 0.66 * $width 0 $color, 0.33 * $width 0.99 * $width 0 $color, 0 * $width 1 * $width 0 $color,
+    -0.33 * $width 0.99 * $width 0 $color, -0.66 * $width 0.66 * $width 0 $color, -0.99 * $width 0.33 * $width 0 $color, -1 * $width 0 * $width 0 $color, -0.99 * $width -0.33 * $width 0 $color,
+    -0.66 * $width -0.66 * $width 0 $color, -0.33 * $width -0.99 * $width 0 $color, $chain-after;
+}
+
+/// 重なり順取得
+/// 取得できなかったら 0 を返す
+/// @param  {string} $key キー名
+/// @return {number}      順番
+@function z-index($key: null) {
+  @if list == type-of($zindex-list) and index($zindex-list, $key) {
+    @return 1000 + index($zindex-list, $key);
+  }
+  @return 0;
+}

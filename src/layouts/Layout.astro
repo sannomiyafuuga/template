@@ -1,0 +1,90 @@
+---
+// import '@fontsource/noto-sans-jp/400.css'
+// import '@fontsource/noto-sans-jp/700.css'
+import '../styles/main.scss'
+// import '@splidejs/splide/css/core'
+
+import { siteConfig as config } from '../../site.config.mjs'
+import SeoHead from '../components/SeoHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Sidebar from '../components/Sidebar.astro'
+import Breadcrumbs from '../components/Breadcrumbs.astro'
+export const defaultRoot = import.meta.env.BASE_URL
+
+// Astro.site
+// Astro.url.pathname
+const { page, seo, hero, root, breadcrumbs } = Astro.props
+const urlOrigin = Astro.url.origin + root
+const canonicalURL = seo?.canonical || new URL(Astro.url.pathname, Astro.site)
+const { siteName, ogImage, msapplicationTileColor, themeColor, charset, locale, favicon, appleTouchIcon } = config
+const title = seo?.titleTag || seo?.title + ' | ' + siteName
+---
+
+<!DOCTYPE html>
+<html class="" lang="ja" prefix="og: http://ogp.me/ns#" data-root={root}>
+  <head>
+    <SeoHead
+      title={title}
+      charset={charset}
+      seo={seo}
+      canonicalURL={canonicalURL}
+      siteName={siteName}
+      urlOrigin={urlOrigin}
+      ogImage={ogImage}
+      locale={locale}
+      page={page}
+      msapplicationTileColor={msapplicationTileColor}
+      themeColor={themeColor}
+      favicon={favicon}
+      appleTouchIcon={appleTouchIcon}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script is:inline src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script is:inline>
+      /* global WebFont */
+      WebFont.load({
+        google: {
+          families: ['Noto+Sans+JP:400,700'],
+        },
+      })
+    </script>
+    <!-- <link rel="preload" href={`${root}assets/css/main-minMD.css`} media="(min-width: 768px)" as="style" />
+    <link rel="stylesheet" href={`${root}assets/css/main-minMD.css`} media="(min-width: 768px)" />
+    <link rel="preload" href={`${root}assets/css/main-minLG.css`} media="(min-width: 1024px)" as="style" />
+    <link rel="stylesheet" href={`${root}assets/css/main-minLG.css`} media="(min-width: 1024px)" /> -->
+    {import.meta.env.MODE === 'production' && <link rel="preload" href={`${root}assets/css/main.css`} as="style" />}
+    <script>
+      import '../js/main.js'
+    </script>
+
+    {page.isPagination && <link rel="stylesheet" href={`${root}assets/css/wp-pagination.css`} />}
+
+    <!-- Google Tag Manager -->
+    {import.meta.env.MODE === 'production' && <script is:inline>console.log('production');</script>}
+    <!-- End Google Tag Manager -->
+  </head>
+  <body id="body" class={`l-body ${page.group ? `l-body--${page.group}` : ''}${page.sub ? 'l-body--in-sub' : ''}`} data-slug={page.slug ? page.slug : ''}>
+    <!-- Google Tag Manager (noscript) -->
+    {import.meta.env.MODE === 'production' && <noscript>console.log('noscript production');</noscript>}
+    <!-- End Google Tag Manager (noscript) -->
+    <Header isHome={page.type === 'home'} page={page} hero={hero} root={root} />
+    <main id="main" role="main" class="l-body__main">
+      {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} root={root} />}
+      <div class="l-body__content">
+        <div class="l-body__content-main">
+          <slot />
+        </div>
+
+        {
+          page?.sub && (
+            <div class="l-body__content-sub">
+              <Sidebar isHome={page.type === 'home'} page={page} root={root} />
+            </div>
+          )
+        }
+      </div>
+    </main>
+    <Footer isHome={page.type === 'home'} page={page} root={root} />
+  </body>
+</html>

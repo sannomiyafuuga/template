@@ -1,0 +1,19 @@
+/* size */
+
+$sizeMax: 50;
+
+@mixin size($prefix: '') {
+  @for $i from 10 through $sizeMax {
+    .#{$prefix}u-size-#{$i} {
+      font-size: #{$i * 0.1}rem;
+    }
+  }
+}
+
+@include size();
+@media (--min-lg) {
+  @include size('L\\:');
+}
+@media (--min-md) {
+  @include size('M\\:');
+}

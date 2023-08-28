@@ -1,0 +1,36 @@
+@use 'sass:map'; // sassの機能
+@use '../Settings/variable' as *;
+@use './functions' as *;
+
+/// ホバー、フォーカス（snipetとして登録されました）
+// action:astro or hover:astro
+
+/// テキストの境界線
+/// 16分割して滑らか感をだす
+/// function _text-outline のラッパー
+/// https://www.chatwork.com/#!rid29164628-1972186661
+/// @param {number} $width        大きさ
+/// @param {string} $color        カラーコード
+/// @param {string} $chain-before 連鎖させる値(前)
+/// @param {string} $chain-after  連鎖させる値(後)
+@mixin text-outline($width: 1px, $color: color('font'), $chain-before: null, $chain-after: null) {
+  text-shadow: text-outline($width, $color, $chain-before, $chain-after);
+}
+
+/// プレースホルダー（snipetとして登録されました）
+// placeholder:astro
+
+/// 縦書き（snipetとして登録されました）
+// tategaki:astro
+
+/// アンチエイリアス有効（snipetとして登録されました）
+/// font-smoothing:astro
+
+/// アンチエイリアス無効（snipetとして登録されました）
+/// font-smoothing-n:astro
+
+/// otf対象のカーニング（snipetとして登録されました）
+/// karning:astro
+
+/// スクロールバー非表示（snipetとして登録されました）
+/// scrollbar-less:astro

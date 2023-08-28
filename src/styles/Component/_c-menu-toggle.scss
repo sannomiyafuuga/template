@@ -1,0 +1,97 @@
+@use '../Foundation/Tools/functions' as *;
+
+.c-menu-toggle {
+  --cb: cubic-bezier(0.78, 0.43, 0.16, 1);
+  transition: visibility 0.1s ease-in-out 0s, opacity 0.1s ease-in-out 0s, z-index 0.1s ease-in-out 0s;
+  position: fixed;
+  background: var(--color-gray-100);
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0;
+  color: var(--color-gray-0);
+  z-index: z-index('trigger');
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.4rem;
+  border: 1px solid var(--color-gray-100);
+  border-right: hidden;
+
+  // .c-menu-toggle__label
+  &__label {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family);
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0.4rem auto;
+    letter-spacing: calc(0 / 1000 * 1em);
+  }
+
+  // .c-menu-toggle__u
+  &__u {
+    display: block;
+    width: 3.4rem;
+    height: 0.2rem;
+    border: 1px solid var(--color-text);
+    background: currentColor;
+    border-radius: 1rem;
+    border: hidden;
+    margin: 1rem auto;
+    position: relative;
+    transition: color 0.4s var(--cb), background 0.4s var(--cb), box-shadow 0.4s var(--cb), transform 0.4s ease-in-out, top 0.4s var(--cb), right 0.4s var(--cb), left 0.4s var(--cb);
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 3.4rem;
+      height: 0.2rem;
+      border: hidden;
+      position: absolute;
+      background: currentColor;
+      border-radius: 1rem;
+      transform-origin: center center;
+    }
+
+    &::before {
+      bottom: 0.8rem;
+      transition: transform 0.4s var(--cb), bottom 0.4s var(--cb) 0.2s, right 0.4s var(--cb) 0.2s;
+    }
+
+    &::after {
+      top: 0.8rem;
+      transition: transform 0.4s var(--cb), top 0.4s var(--cb) 0.2s, right 0.4s var(--cb) 0.2s;
+    }
+  }
+
+  /* open */
+  &[aria-expanded='true'] {
+    .c-menu-toggle__u {
+      background: transparent;
+      border: hidden;
+      transform: translate3d(0, 0, 0);
+
+      &::before {
+        bottom: 0;
+        right: 0;
+        transform: translate3d(0, 0, 0) rotate(45deg);
+        transition: transform 0.4s var(--cb) 0.2s, bottom 0.4s var(--cb), right 0.4s var(--cb);
+      }
+
+      &::after {
+        top: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0) rotate(-45deg);
+        transition: transform 0.4s var(--cb) 0.2s, top 0.4s var(--cb), left 0.4s var(--cb);
+      }
+    }
+  }
+
+  /* close */
+  &[aria-expanded='false'] {
+  }
+}

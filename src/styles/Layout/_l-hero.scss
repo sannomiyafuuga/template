@@ -1,0 +1,59 @@
+/* hero */
+@use '../Foundation/Settings/variable' as *;
+@use '../Foundation/Tools/functions' as *;
+@use '../Foundation/Tools/mixins' as *;
+
+.l-hero {
+  --hero-size: 28;
+  font-size: calc(var(--hero-size) * 0.1rem);
+  line-height: 1.4;
+  text-align: center;
+
+  background: var(--color-gray-sub);
+
+  // .l-hero__container
+  &__container {
+    max-width: 100%;
+    width: var(--container);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 20rem;
+  }
+}
+
+/* ヒーロー見出し：親 */
+.l-hero-heading-parent {
+  font-size: calc(20 / var(--hero-size) * 1em);
+  margin-bottom: 0.3em;
+  font-weight: var(--font-weight-bold);
+
+  // .l-hero-heading-parent__label
+  &__label {
+    font-size: 1em;
+  }
+}
+
+/* ヒーロー見出し：メイン */
+.l-hero-heading-main {
+  font-size: calc(28 / var(--hero-size) * 1em);
+  font-weight: var(--font-weight-bold);
+
+  // .l-hero-heading-main__label
+  &__label {
+    font-size: 1em;
+  }
+}
+
+/* ヒーロー見出し：サブ */
+.l-hero-heading-sub {
+  font-size: calc(24 / var(--hero-size) * 1em);
+  margin-top: 0.3em;
+  font-weight: var(--font-weight-bold);
+
+  // .l-hero-heading-sub__label
+  &__label {
+    font-size: 1em;
+  }
+}

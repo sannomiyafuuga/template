@@ -1,0 +1,91 @@
+---
+import Layout, { defaultRoot } from '../../layouts/Layout.astro'
+import Picture from '../../components/Picture.astro'
+import WpPagination from '../../components/WpPagination.astro'
+const root = defaultRoot // 任意のパスを設定してrootを上書きできます
+
+// ページ情報
+const page = {
+  type: 'page', // home | page | single
+  sub: true, // サブエリアの追加
+  slug: 'post',
+  isPagination: true, // ページネーションの有無
+}
+
+// SEO・metaタグ関連
+const seo = {
+  title: '投稿一覧', // 基本必須（titleTagが有線される）
+  // titleTag: 'Webサイト構築用 Astroフレームワーク', // 必要あれば（タイトルタグ上書き）
+  // description: '', // 必要あれば
+  // keywords: 'キーワード1,キーワード2', // 必要あれば
+  // ogURL: '', // 必要あれば（基本自動出力）
+  // ogType: '', // 必要あれば（基本自動出力）
+  // ogImage: '', // 必要あれば（基本自動出力）
+  // ogLocale: '', // 必要あれば（基本自動出力）
+}
+
+// ヒーローコンポーネントに渡すprops
+const hero = {
+  parentTitle: '',
+  mainTitle: '投稿一覧',
+  subTitle: '',
+}
+
+// 【仕様未確定】パンくずリスト false || true || [{text: '/', href: '#'}, ...]
+const customCrumbs = [
+  {
+    text: '親ページ',
+    href: '#',
+  },
+  {
+    text: 'カレントページ',
+    href: '#',
+  },
+]
+---
+
+<Layout page={page} seo={seo} hero={hero} root={root} breadcrumbs={customCrumbs}>
+  <h2 class="c-container u-mt-30 u-mb-30">宮沢賢治の一覧</h2>
+
+  <article class="c-container">
+    <a href={`${root}post/single/`} class="u-b u-border-gray u-border-solid u-border-1 u-gutter u-pt-20 u-pb-20 u-radius-8 u-mb-30">
+      <h2 class="">宮沢賢治「セロ弾きのゴーシュ」</h2>
+      <time>2022.01.01</time>
+      <p class="u-mt-10">
+        ゴーシュは東の司会耳汁へ子をしゴーシュたた。まずはずいぶんいいかげんましたという日ですまし。俄ないましのたはないところがたばこの生意気たちのときにもいちばん生意気たたて、ぼくだけ療を叩くられるものだた。つけすぎ誰もゴーシュが青くまして夜のゴーシュの狩たちよりあい第二窓どものあんまをやれるてやっますた。窓はいまあけよているませ。ゴーシュは二し歌のようにいっがまわっな。鳥は風車次たりわたしに遅れるてくれた。
+      </p>
+    </a>
+  </article>
+
+  <article class="c-container">
+    <a href={`${root}post/single/`} class="u-b u-border-gray u-border-solid u-border-1 u-gutter u-pt-20 u-pb-20 u-radius-8 u-mb-30">
+      <h2 class="">宮沢賢治「セロ弾きのゴーシュ」</h2>
+      <time>2022.01.01</time>
+      <p class="u-mt-10">
+        ゴーシュは東の司会耳汁へ子をしゴーシュたた。まずはずいぶんいいかげんましたという日ですまし。俄ないましのたはないところがたばこの生意気たちのときにもいちばん生意気たたて、ぼくだけ療を叩くられるものだた。つけすぎ誰もゴーシュが青くまして夜のゴーシュの狩たちよりあい第二窓どものあんまをやれるてやっますた。窓はいまあけよているませ。ゴーシュは二し歌のようにいっがまわっな。鳥は風車次たりわたしに遅れるてくれた。
+      </p>
+    </a>
+  </article>
+
+  <article class="c-container">
+    <a href={`${root}post/single/`} class="u-b u-border-gray u-border-solid u-border-1 u-gutter u-pt-20 u-pb-20 u-radius-8 u-mb-30">
+      <h2 class="">宮沢賢治「セロ弾きのゴーシュ」</h2>
+      <time>2022.01.01</time>
+      <p class="u-mt-10">
+        ゴーシュは東の司会耳汁へ子をしゴーシュたた。まずはずいぶんいいかげんましたという日ですまし。俄ないましのたはないところがたばこの生意気たちのときにもいちばん生意気たたて、ぼくだけ療を叩くられるものだた。つけすぎ誰もゴーシュが青くまして夜のゴーシュの狩たちよりあい第二窓どものあんまをやれるてやっますた。窓はいまあけよているませ。ゴーシュは二し歌のようにいっがまわっな。鳥は風車次たりわたしに遅れるてくれた。
+      </p>
+    </a>
+  </article>
+
+  <article class="c-container">
+    <a href={`${root}post/single/`} class="u-b u-border-gray u-border-solid u-border-1 u-gutter u-pt-20 u-pb-20 u-radius-8 u-mb-30">
+      <h2 class="">宮沢賢治「セロ弾きのゴーシュ」</h2>
+      <time>2022.01.01</time>
+      <p class="u-mt-10">
+        ゴーシュは東の司会耳汁へ子をしゴーシュたた。まずはずいぶんいいかげんましたという日ですまし。俄ないましのたはないところがたばこの生意気たちのときにもいちばん生意気たたて、ぼくだけ療を叩くられるものだた。つけすぎ誰もゴーシュが青くまして夜のゴーシュの狩たちよりあい第二窓どものあんまをやれるてやっますた。窓はいまあけよているませ。ゴーシュは二し歌のようにいっがまわっな。鳥は風車次たりわたしに遅れるてくれた。
+      </p>
+    </a>
+  </article>
+
+  <WpPagination />
+</Layout>

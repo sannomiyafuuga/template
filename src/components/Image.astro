@@ -1,0 +1,31 @@
+---
+const { src, ext = 'jpg', alt, media, className = '', width, height, lazyload = true, ariaHidden = false } = Astro.props
+---
+
+{
+  lazyload ? (
+    <img
+      src={`${src}.${ext}`}
+      srcset={`${src}.${ext} ${width}w, ${src}@2x.${ext} ${width * 2}w`}
+      sizes={`(min-width:${media || width / 2}px) ${width}px, ${width / 2}px`}
+      decoding="async"
+      loading="lazy"
+      width={`${width}`}
+      height={`${height}`}
+      class={className}
+      alt={alt}
+      aria-hidden={ariaHidden}
+    />
+  ) : (
+    <img
+      src={`${src}.${ext}`}
+      srcset={`${src}.${ext} ${width}w, ${src}@2x.${ext} ${width * 2}w`}
+      sizes={`(min-width:${media || width / 2}px) ${width}px, ${width / 2}px`}
+      width={`${width}`}
+      height={`${height}`}
+      class={className}
+      alt={alt}
+      aria-hidden={ariaHidden}
+    />
+  )
+}

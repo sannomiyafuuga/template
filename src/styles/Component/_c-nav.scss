@@ -1,0 +1,16 @@
+@use '../Foundation/Tools/mixins' as *;
+@use '../Foundation/Tools/functions' as *;
+
+/* グローバルナビ */
+.c-nav {
+  // .c-nav__item
+  &__item {
+  }
+
+  // .c-nav__link
+  &__link {
+    // .c-nav__link-label
+    &-label {
+    }
+  }
+}

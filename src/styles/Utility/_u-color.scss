@@ -1,0 +1,8 @@
+@use '../Foundation/Settings/variable' as *;
+
+/* color */
+@each $key, $color in $color-map {
+  .u-color-#{$key} {
+    color: var(--color-#{$key});
+  }
+}

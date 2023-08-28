@@ -1,0 +1,114 @@
+/* margin-padding
+----------------------------------------------------------------- */
+$spaceMap: (
+  '0': 0,
+  '1': 1,
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  '6': 6,
+  '7': 7,
+  '8': 8,
+  '9': 9,
+  '10': 10,
+  '15': 15,
+  '20': 20,
+  '25': 25,
+  '30': 30,
+  '35': 35,
+  '40': 40,
+  '45': 45,
+  '50': 50,
+  '55': 55,
+  '60': 60,
+  '65': 65,
+  '70': 70,
+  '75': 75,
+  '80': 80,
+  '85': 85,
+  '90': 90,
+  '95': 95,
+  '100': 100,
+) !default;
+
+@mixin space($prefix: '') {
+  @each $key, $value in $spaceMap {
+    .#{$prefix}u-mt-#{$key} {
+      margin-top: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-mr-#{$key} {
+      margin-right: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-mb-#{$key} {
+      margin-bottom: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-ml-#{$key} {
+      margin-left: #{$value * 0.1}rem;
+    }
+
+    @if $value != 0 {
+      @if $value <= 30 {
+        .#{$prefix}u-mt-_#{$key} {
+          margin-top: #{$value * -0.1}rem;
+        }
+        .#{$prefix}u-mr-_#{$key} {
+          margin-right: #{$value * -0.1}rem;
+        }
+        .#{$prefix}u-mb-_#{$key} {
+          margin-bottom: #{$value * -0.1}rem;
+        }
+        .#{$prefix}u-ml-_#{$key} {
+          margin-left: #{$value * -0.1}rem;
+        }
+      }
+    }
+
+    .#{$prefix}u-pt-#{$key} {
+      padding-top: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-pr-#{$key} {
+      padding-right: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-pb-#{$key} {
+      padding-bottom: #{$value * 0.1}rem;
+    }
+    .#{$prefix}u-pl-#{$key} {
+      padding-left: #{$value * 0.1}rem;
+    }
+  }
+
+  .#{$prefix}u-gutter {
+    padding-left: var(--viewport-both-space);
+    padding-right: var(--viewport-both-space);
+  }
+
+  .#{$prefix}u-gutter-all {
+    padding: var(--viewport-both-space);
+  }
+
+  .#{$prefix}u-m-auto {
+    margin: auto;
+  }
+  .#{$prefix}u-mt-auto {
+    margin-top: auto;
+  }
+  .#{$prefix}u-mr-auto {
+    margin-right: auto;
+  }
+  .#{$prefix}u-mb-auto {
+    margin-bottom: auto;
+  }
+  .#{$prefix}u-ml-auto {
+    margin-left: auto;
+  }
+}
+
+@include space();
+
+@media (--min-lg) {
+  @include space('L\\:');
+}
+@media (--min-md) {
+  @include space('M\\:');
+}
